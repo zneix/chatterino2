@@ -162,6 +162,7 @@ SOURCES += \
     src/providers/irc/IrcChannel2.cpp \
     src/providers/irc/IrcCommands.cpp \
     src/providers/irc/IrcConnection2.cpp \
+    src/providers/irc/IrcParsing.cpp \
     src/providers/irc/IrcServer.cpp \
     src/providers/LinkResolver.cpp \
     src/providers/twitch/ChatroomChannel.cpp \

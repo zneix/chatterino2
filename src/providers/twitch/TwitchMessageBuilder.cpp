@@ -8,6 +8,7 @@
 #include "debug/Log.hpp"
 #include "messages/Message.hpp"
 #include "providers/chatterino/ChatterinoBadges.hpp"
+#include "providers/irc/IrcParsing.hpp"
 #include "providers/twitch/TwitchBadges.hpp"
 #include "providers/twitch/TwitchChannel.hpp"
 #include "providers/twitch/TwitchIrcServer.hpp"
@@ -70,16 +71,6 @@ QColor getRandomColor(const QVariant &userId)
 namespace chatterino {
 
 namespace {
-
-    QStringList parseTagList(const QVariantMap &tags, const QString &key)
-    {
-        auto iterator = tags.find(key);
-        if (iterator == tags.end())
-            return QStringList{};
-
-        return iterator.value().toString().split(
-            ',', QString::SplitBehavior::SkipEmptyParts);
-    }
 
     std::map<QString, QString> parseBadgeInfos(const QVariantMap &tags)
     {

@@ -6,6 +6,7 @@ include_directories(src)
 
 set(chatterino_SOURCES
     src/common/UsernameSet.cpp
+    src/providers/irc/IrcParsing.cpp
     )
 
 find_package(Qt5Widgets CONFIG REQUIRED)
@@ -25,6 +26,7 @@ if (BUILD_TESTS)
 
         tests/src/main.cpp
         tests/src/UsernameSet.cpp
+        tests/src/IrcParsing.cpp
         )
 
     target_link_libraries(chatterino-test Qt5::Core)
