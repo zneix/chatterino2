@@ -33,5 +33,5 @@ if (BUILD_TESTS)
 
     gtest_discover_tests(chatterino-test)
 else()
-    message(FATAL_ERROR "This cmake file is only intended for tests right now. Use qmake to build chatterino2")
+    message(FATAL_ERROR "This cmake file is only intended for tests right now. Use qmake to build chatterino2, or enable the BUILD_TESTS flag to test")
 endif()
