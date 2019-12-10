@@ -7,6 +7,7 @@
 #include "common/Common.hpp"
 #include "controllers/accounts/AccountController.hpp"
 #include "controllers/highlights/HighlightController.hpp"
+#include "debug/Log.hpp"
 #include "messages/Message.hpp"
 #include "messages/MessageBuilder.hpp"
 #include "providers/twitch/ChatroomChannel.hpp"
@@ -67,7 +68,7 @@ void TwitchIrcServer::initializeConnection(IrcConnection *connection,
     std::shared_ptr<TwitchAccount> account =
         getApp()->accounts->twitch.getCurrent();
 
-    qDebug() << "logging in as" << account->getUserName();
+    log("[{}] logging in as {}", type, account->getUserName());
 
     QString username = account->getUserName();
     QString oauthToken = account->getOAuthToken();
