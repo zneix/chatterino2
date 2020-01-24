@@ -164,27 +164,29 @@ bool TwitchMessageBuilder::isIgnored() const
         for (const auto &user :
              app->accounts->twitch.getCurrent()->getIgnores())
         {
-            if (sourceUserID == user.id)
+            if (sourceUserID != user.id)
             {
-                switch (static_cast<ShowIgnoredUsersMessages>(
-                    getSettings()->showIgnoredUsersMessages.getValue()))
-                {
-                    case ShowIgnoredUsersMessages::IfModerator:
-                        if (this->channel->isMod() ||
-                            this->channel->isBroadcaster())
-                            return false;
-                        break;
-                    case ShowIgnoredUsersMessages::IfBroadcaster:
-                        if (this->channel->isBroadcaster())
-                            return false;
-                        break;
-                    case ShowIgnoredUsersMessages::Never:
-                        break;
-                }
-                log("Blocking message because it's from blocked user {}",
-                    user.name);
-                return true;
+                continue;
             }
+
+            switch (static_cast<ShowIgnoredUsersMessages>(
+                getSettings()->showIgnoredUsersMessages.getValue()))
+            {
+                case ShowIgnoredUsersMessages::IfModerator:
+                    if (this->channel->isMod() ||
+                        this->channel->isBroadcaster())
+                        return false;
+                    break;
+                case ShowIgnoredUsersMessages::IfBroadcaster:
+                    if (this->channel->isBroadcaster())
+                        return false;
+                    break;
+                case ShowIgnoredUsersMessages::Never:
+                    break;
+            }
+            log("Blocking message because it's from blocked user {}",
+                user.name);
+            return true;
         }
     }
 
@@ -258,10 +260,7 @@ MessagePtr TwitchMessageBuilder::build()
 
     this->parseUsername();
 
-    if (this->userName == this->channel->getName())
-    {
-        this->senderIsBroadcaster = true;
-    }
+    this->parseUserType();
 
     this->message().flags.set(MessageFlag::Collapsed);
 
@@ -621,6 +620,14 @@ void TwitchMessageBuilder::parseUsername()
     if (this->ircMessage->nick() == currentUser->getUserName())
     {
         currentUser->setColor(this->usernameColor_);
+    }
+}
+
+void TwitchMessageBuilder::parseUserType()
+{
+    if (this->userName == this->channel->getName())
+    {
+        this->senderIsBroadcaster = true;
     }
 }
 

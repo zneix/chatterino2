@@ -198,10 +198,10 @@ void Window::addCustomTitlebarButtons()
 
 void Window::addDebugStuff()
 {
-#ifdef C_DEBUG
+    // #ifdef C_DEBUG
     std::vector<QString> cheerMessages, subMessages, miscMessages;
 
-    cheerMessages = getSampleCheerMessage();
+    // cheerMessages = getSampleCheerMessage();
     // clang-format off
 
     subMessages.emplace_back(R"(@badges=staff/1,broadcaster/1,turbo/1;color=#008000;display-name=ronni;emotes=;id=db25007f-7a18-43eb-9379-80131e44d633;login=ronni;mod=0;msg-id=resub;msg-param-months=6;msg-param-sub-plan=Prime;msg-param-sub-plan-name=Prime;room-id=1337;subscriber=1;system-msg=ronni\shas\ssubscribed\sfor\s6\smonths!;tmi-sent-ts=1507246572675;turbo=1;user-id=1337;user-type=staff :tmi.twitch.tv USERNOTICE #pajlada :Great stream -- keep it up!)");
@@ -254,7 +254,7 @@ void Window::addDebugStuff()
         dialog->show();
     });
 
-#endif
+    // #endif
 }
 
 void Window::addShortcuts()

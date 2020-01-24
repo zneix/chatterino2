@@ -54,6 +54,7 @@ private:
     void parseRoomID();
     void appendChannelName();
     void parseUsernameColor();
+    void parseUserType();
     void parseUsername();
     void appendUsername();
     void runIgnoreReplaces(
@@ -93,6 +94,13 @@ private:
     bool highlightVisual_ = false;
     bool highlightAlert_ = false;
     bool highlightSound_ = false;
+
+    enum UserLevel {
+        Normal = 0,
+        Moderator = 1,
+        Staff = 2,
+        Broadcaster = 2,
+    };
 };
 
 }  // namespace chatterino
