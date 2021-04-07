@@ -22,7 +22,7 @@ class Window : public BaseWindow
 public:
     explicit Window(WindowType type);
 
-    bool areTabsHidden();
+    bool areTabsHidden() const;
 
     WindowType getType();
     SplitNotebook &getNotebook();

@@ -422,14 +422,13 @@ void Window::addShortcuts()
                 //                page->getTab()->resize(0, 0);
             }
         }
-        this->getNotebook().setShowAddButton(this->areTabsHidden_ ? true
-                                                                  : false);
+        this->getNotebook().setShowAddButton(this->areTabsHidden_);
 
-        this->areTabsHidden_ = this->areTabsHidden_ ? false : true;
+        this->areTabsHidden_ = !this->areTabsHidden_;
     });
 }
 
-bool Window::areTabsHidden()
+bool Window::areTabsHidden() const
 {
     return this->areTabsHidden_;
 }
