@@ -11,8 +11,10 @@ public:
     struct {
         QPixmap fourtf;
         QPixmap kararty;
+        QPixmap matthewde;
         QPixmap mm2pl;
         QPixmap pajlada;
+        QPixmap revolter;
         QPixmap zneix;
     } avatars;
     struct {
